@@ -52,7 +52,7 @@ namespace XamarinDemo.Services
         {
             get
             {
-                return "https://10.0.2.2:45456/api";
+                return "https://192.168.254.109:45455/api";
             }
         }
     }
