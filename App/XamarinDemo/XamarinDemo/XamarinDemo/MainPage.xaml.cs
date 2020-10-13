@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
@@ -50,6 +51,8 @@ namespace XamarinDemo
                 {
                     Products.Add(item);
                 }
+
+                OnPropertyChanged("Products");
             }
             catch (Exception ex)
             {
@@ -59,6 +62,19 @@ namespace XamarinDemo
             {
                 IsBusy = false;
             }
+        }
+
+        public IList<string> CountryList
+        {
+            get
+            {
+                return new List<string> { "USA", "Germany", "England" };
+            }
+        }
+
+        private void Picker_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var item =CountryPicker.SelectedItem;
         }
     }
 }

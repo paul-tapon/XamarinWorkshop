@@ -6,9 +6,21 @@
              mc:Ignorable="d"
              x:Class="XamarinDemo.MainPage">
 
-    <StackLayout>
-        <!-- Place new controls here -->
-       
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Label Text="Country : " Grid.Column="0" VerticalOptions='CenterAndExpand' Margin="10"/>
+            <Picker x:Name="CountryPicker" Title="Select a country" Grid.Column="1" ItemsSource="{Binding CountryList}"  Margin="10" SelectedIndexChanged="Picker_SelectedIndexChanged"/>
+        </Grid>
+
 
         <ListView x:Name="ItemsListView"
                 ItemsSource="{Binding Products}"
@@ -16,8 +28,7 @@
                 RefreshCommand="{Binding LoadProductsCommand}"
                 IsPullToRefreshEnabled="true"
                 IsRefreshing="{Binding IsBusy, Mode=OneWay}"
-                CachingStrategy="RecycleElement"
-                >
+                CachingStrategy="RecycleElement" Grid.Row="1">
 
             <ListView.ItemTemplate>
                 <DataTemplate>
@@ -39,6 +50,9 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-    </StackLayout>
+
+    </Grid>
+       
+   
 
 </ContentPage>

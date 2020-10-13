@@ -34,19 +34,13 @@ namespace XamarinDemo.Services
         public async Task<IEnumerable<Product>> GetItemsAsync(bool forceRefresh = false)
         {
             var client = new RestClient(ApiUrl);
-            var request = new RestRequest("/product", DataFormat.Json);
+            var request = new RestRequest("product", DataFormat.Json);
             request.Method = Method.GET;
 
             var response = await client.ExecuteAsync(request);
             var responseData = JsonConvert.DeserializeObject<List<Product>>(response.Content);
-
-            var data = new List<Product>();
-
-            data.Add(new Product() { ProductId = 1, Name = "Iphone", Description = "apple" });
-            data.Add(new Product() { ProductId = 2, Name = "note 10", Description = "samsung" });
-
-
-            return await Task.FromResult(data);
+         
+            return await Task.FromResult(responseData);
         }
 
         public Task<bool> UpdateItemAsync(Product item)
@@ -58,7 +52,7 @@ namespace XamarinDemo.Services
         {
             get
             {
-                return "https://192.168.1.64:44384/api";
+                return "https://10.0.2.2:45456/api";
             }
         }
     }
